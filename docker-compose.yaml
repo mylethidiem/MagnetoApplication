@@ -1,0 +1,81 @@
+version: '3.8'
+services:
+  mysql-service:
+    container_name: mysqlcontainer
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - internal
+
+  redis-service:
+    container_name: rediscontainer
+    image: redis:8-alpine
+    networks:
+      - internal
+
+  elastic-service:
+    container_name: elastcontainer
+    image: elasticsearch:7.17.18
+    environment:
+      - ES_JAVA_OPTS=-Xms128m -Xmx128m
+      - discovery.type=single-node
+    networks:
+      - internal
+
+  phpmyadmin-service:
+    container_name: phpmyadmincontainer
+    image: phpmyadmin:5.2.3
+    environment:
+      - PMA_HOST=mysql-service
+      - PMA_ABSOLUTE_URI=https://test.dyna.com/pma/
+    networks:
+      - internal
+
+  phpfm-service:
+    container_name: phpfpmcontainer_manual_image
+    build: ./php-fpm/
+    networks:
+      - internal
+    depends_on:
+      - mysql-service
+      - redis-service
+      - elastic-service
+    volumes:
+      - magento-data:/var/www/html
+
+  varnish-service:
+    container_name: varnishcontainer_manual_image
+    build: ./varnish/
+    networks:
+      - internal
+    depends_on:
+      - phpfm-service
+
+  nginx-service:
+    container_name: nginxcontainer_manual_image
+    build: ./nginx/
+    networks:
+      - internal
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - varnish-service
+    volumes:
+      - ./nginx/ssl:/etc/nginx/ssl
+      - magento-data:/var/www/html
+
+volumes:
+  mysql-data:
+  magento-data:
+
+networks:
+  internal:
+    name: internal
+    driver: bridge

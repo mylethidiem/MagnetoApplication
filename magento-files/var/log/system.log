@@ -1,0 +1,27 @@
+[2026-05-24T04:06:32.782874+00:00] main.ERROR: Missing following extensions: 'sockets'
+#0 [internal function]: Magento\Setup\Model\Installer->checkExtensions()
+#1 /var/www/html/setup/src/Magento/Setup/Model/Installer.php(407): call_user_func_array(Array, Array)
+#2 /var/www/html/setup/src/Magento/Setup/Console/Command/InstallCommand.php(237): Magento\Setup\Model\Installer->install(Array)
+#3 /var/www/html/vendor/symfony/console/Command/Command.php(326): Magento\Setup\Console\Command\InstallCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/html/vendor/symfony/console/Application.php(1098): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /var/www/html/vendor/symfony/console/Application.php(324): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Setup\Console\Command\InstallCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/html/vendor/magento/framework/Console/Cli.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/html/vendor/symfony/console/Application.php(175): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/html/bin/magento(23): Symfony\Component\Console\Application->run()
+#9 {main} [] []
+[2026-05-24T04:08:23.151327+00:00] main.INFO: Source table payment_services_order_status_data_production_submitted_hash does not exist. Skipping data migration... [] []
+[2026-05-24T04:11:37.608811+00:00] main.CRITICAL: Type Error occurred when creating object: Magento\Framework\Image, call_user_func(): Argument #1 ($callback) must be a valid callback, function "imagecreatefromjpeg" not found or invalid function name [] []
+[2026-05-24T04:11:37.613481+00:00] main.ERROR: Unable to apply data patch Magento\Theme\Setup\Patch\Data\RegisterThemes for module Magento_Theme. Original exception message: Type Error occurred when creating object: Magento\Framework\Image, call_user_func(): Argument #1 ($callback) must be a valid callback, function "imagecreatefromjpeg" not found or invalid function name
+#0 /var/www/html/setup/src/Magento/Setup/Model/Installer.php(1093): Magento\Framework\Setup\Patch\PatchApplier->applyDataPatch('Magento_Theme')
+#1 /var/www/html/setup/src/Magento/Setup/Model/Installer.php(965): Magento\Setup\Model\Installer->handleDBSchemaData(Object(Magento\Setup\Module\DataSetup), 'data', Array)
+#2 [internal function]: Magento\Setup\Model\Installer->installDataFixtures(Array)
+#3 /var/www/html/setup/src/Magento/Setup/Model/Installer.php(407): call_user_func_array(Array, Array)
+#4 /var/www/html/setup/src/Magento/Setup/Console/Command/InstallCommand.php(237): Magento\Setup\Model\Installer->install(Array)
+#5 /var/www/html/vendor/symfony/console/Command/Command.php(326): Magento\Setup\Console\Command\InstallCommand->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/html/vendor/symfony/console/Application.php(1098): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 /var/www/html/vendor/symfony/console/Application.php(324): Symfony\Component\Console\Application->doRunCommand(Object(Magento\Setup\Console\Command\InstallCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 /var/www/html/vendor/magento/framework/Console/Cli.php(118): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 /var/www/html/vendor/symfony/console/Application.php(175): Magento\Framework\Console\Cli->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 /var/www/html/bin/magento(23): Symfony\Component\Console\Application->run()
+#11 {main} [] []
+[2026-05-24T04:18:16.570151+00:00] main.INFO: Source table payment_services_order_status_data_production_submitted_hash does not exist. Skipping data migration... [] []
